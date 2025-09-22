@@ -1,0 +1,126 @@
+.endChat{
+  padding-bottom: 100px;
+}
+
+.message {
+  padding: 20px;
+  max-width: 80%;
+  align-self: flex-start; 
+  color: #ffffff;
+  font-weight: 500;
+
+  &.user {
+    background-color: #2c2937;
+    border-radius: 20px;
+    align-self: flex-end; 
+    color: #ececec;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+}
+
+  .newForm{
+    width: 50%;
+    position: absolute;
+    bottom: 0;
+    background-color: #2c2937;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 0px 20px;
+
+
+    input{
+      flex:1;
+      padding:20px;
+      border: none;
+      outline: none;
+      background-color: transparent;
+      color: #ececec;
+    }
+
+    button,label{
+      border-radius: 50%;
+      background-color: #605e68;
+      border: none;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+
+      img{
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+
+@media screen and (max-width: 600px) {
+  .newForm {
+    width: 100%;
+    padding: 0 5px;
+    gap: 10px;
+  }
+  .newForm input {
+    padding: 10px;
+    font-size: 14px;
+  }
+  .newForm button, .newForm label {
+    padding: 5px;
+  }
+}
+
+.loading-dots {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 1.5rem;
+  color: #e55571;
+  margin: 10px 0 0 0;
+  letter-spacing: 2px;
+  animation: blink 1.2s infinite both;
+}
+.loading-dots span {
+  animation: bounce 1s infinite alternate;
+  display: inline-block;
+}
+.loading-dots span:nth-child(2) { animation-delay: 0.2s; }
+.loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes bounce {
+  from { transform: translateY(0); }
+  to { transform: translateY(-6px); }
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.error-message {
+  color: #ff4d4f;
+  background: rgba(255,77,79,0.08);
+  border-radius: 8px;
+  padding: 10px 16px;
+  margin: 10px 0;
+  font-size: 1rem;
+  text-align: left;
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.newForm input:disabled {
+  background: #232232;
+  color: #888;
+  cursor: not-allowed;
+}
+.newForm button:disabled {
+  background: #888;
+  cursor: not-allowed;
+  opacity: 0.7;
+}

@@ -1,0 +1,203 @@
+:root {
+  --primary-bg: #0e0c16; /* Darker background */
+  --secondary-bg: #0e0c16; /* Slightly lighter background for elements */
+  --user-message-bg: #0e0c16; /* Vibrant blue for user messages */
+  --bot-message-bg: #0e0c16; /* Dark grey for bot messages */
+  --text-color: #edebeb; /* Light text for readability */
+  --bot-bright-text: #fffbe6; /* Bright yellowish for bot text */
+  --border-radius-large: 15px;
+  --spacing-medium: 20px;
+  --spacing-small: 10px;
+  --shadow-light: 0 4px 10px rgba(0, 0, 0, 0.3);
+  --shadow-dark: 0 6px 15px rgba(0, 0, 0, 0.5);
+}
+
+.chatPage {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  background-color: var(--primary-bg); /* Use primary background */
+  color: var(--text-color); /* Set default text color */
+}
+
+/* Loading, Error, Empty states */
+.chatPage.loading,
+.chatPage.error,
+.chatPage.empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2em;
+  color: #999;
+}
+.chatPage.error {
+  color: #dc3545; /* Red for errors */
+}
+
+
+.chatPage .wrapper {
+  flex: 1;
+  overflow-y: auto; /* Changed to auto for better scroll behavior */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: var(--spacing-medium) 0; /* Add vertical padding */
+}
+
+.chatPage .wrapper .chat {
+  width: 70%; /* Slightly wider chat area on larger screens */
+  max-width: 900px; /* Max width to prevent it from getting too wide */
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-small); /* Smaller gap for tighter messages */
+  padding: 0 var(--spacing-medium); /* Horizontal padding */
+}
+
+.chatPage .wrapper .chat p,
+.chatPage .wrapper .chat li {
+  margin: var(--spacing-small) 0; /* Standard paragraph/list item margin */
+  line-height: 1.6;
+}
+
+.chatPage .wrapper .chat .message-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Default alignment */
+  gap: 5px; /* Small gap between image and text */
+}
+
+.chatPage .wrapper .chat .message-container.user-message-container {
+  align-items: flex-end; /* Align user messages to the right */
+}
+
+.chatPage .wrapper .chat .message {
+  padding: var(--spacing-small) var(--spacing-medium);
+  border-radius: var(--border-radius-large); /* Apply border radius from variable */
+  max-width: 70%; /* Adjust max-width for better flow */
+  font-weight: 400;
+  line-height: 1.5; /* Ensure good line spacing */
+  word-wrap: break-word; /* Prevents long words from breaking layout */
+  white-space: pre-wrap; /* Preserves whitespace and line breaks in Markdown */
+  box-shadow: var(--shadow-light); /* Apply subtle shadow */
+  color: var(--text-color);
+  background-color: var(--secondary-bg); /* Default for bot messages */
+  align-self: flex-start; /* Default for bot messages */
+}
+
+.chatPage .wrapper .chat .message.user {
+  background-color: var(--user-message-bg); /* User message background */
+  color: #ffffff; /* White text for user messages */
+  align-self: flex-end; /* Align user messages to the right */
+  box-shadow: var(--shadow-dark); /* Slightly stronger shadow for user messages */
+  /* Optional: Gradient for user messages */
+  background-image: linear-gradient(to right bottom, #0e0c16, #0e0c16);
+}
+
+.chatPage .wrapper .chat .message.bot {
+  background-color: var(--bot-message-bg); /* Bot message background */
+  color: var(--bot-bright-text); /* Bright text for bot messages */
+  align-self: flex-start; /* Ensure bot messages are aligned left */
+}
+
+/* Styling for Markdown elements within messages */
+.chatPage .wrapper .chat .message p:first-child {
+  margin-top: 0;
+}
+.chatPage .wrapper .chat .message p:last-child {
+  margin-bottom: 0;
+}
+
+.chatPage .wrapper .chat .message code {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 2px 5px;
+  border-radius: 4px;
+  font-family: 'SF Mono', 'Consolas', 'Monaco', monospace;
+  font-size: 0.9em;
+}
+
+.chatPage .wrapper .chat .message pre {
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 10px;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-family: 'SF Mono', 'Consolas', 'Monaco', monospace;
+  font-size: 0.85em;
+  margin: 10px 0;
+}
+
+.chatPage .wrapper .chat .message pre code {
+  background-color: transparent;
+  padding: 0;
+  border-radius: 0;
+  font-size: 1em;
+}
+
+/* Image styles within messages */
+.chatPage .wrapper .chat .message-container .ik-image {
+  border-radius: var(--border-radius-large);
+  object-fit: cover;
+  margin-bottom: var(--spacing-small);
+  box-shadow: var(--shadow-light);
+}
+
+.message-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  background: #232232;
+}
+
+.timestamp {
+  font-size: 0.78rem;
+  color: #b0b0b0;
+  margin: 2px 0 0 48px;
+  user-select: none;
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Media Queries for Responsiveness */
+@media screen and (max-width: 900px) {
+  .chatPage .wrapper .chat {
+    width: 85%; /* Wider on medium screens */
+  }
+  .chatPage .wrapper .chat .message {
+    max-width: 80%; /* Allow messages to take more width */
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .chatPage .wrapper .chat {
+    width: 95%;
+    padding: 0 var(--spacing-small); /* Less padding on small screens */
+  }
+  .chatPage .wrapper .chat .message {
+    padding: var(--spacing-small);
+    font-size: 14px;
+    max-width: 90%; /* Even more width on small screens */
+  }
+  .chatPage .wrapper .chat p,
+  .chatPage .wrapper .chat li {
+    margin: 5px 0px;
+  }
+  .chatPage .wrapper {
+    padding: var(--spacing-small) 0;
+  }
+}
